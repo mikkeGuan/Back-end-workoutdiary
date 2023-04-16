@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title >Add workout</title>
+<h1 style="color: LightGoldenRodYellow; ">Add workout</h1>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"  href="" th:href="@{/css/styles.css}" /> 
+</head>
+<body class="bg">
+	<form style="color: LightGoldenRodYellow; " th:object="${workout}" th:action="@{save}" action="#" method="post">
+		<label for="exercise">Exercise:</label> <input type="text" id="exercise"
+			th:field="*{exercise}" /><br /> 
+			<label for="weight">Weight:</label> <input
+			type="text" id="weight" th:field="*{weight}" /><br />
+			 <label for="repetition">Repetition:</label> <input type="number"
+			id="repetition" th:field="*{repetition}" /><br /> 
+			<label for="sets">Sets:</label> <input type="number" id="sets"
+			th:field="*{sets}" /><br />
+			<label for="location">Location</label>
+        <select id="location" name="location.id" class="form-control">
+            <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"></option>
+        </select>
+
+		<button type="submit">Save</button>
+	</form>
+
+</body>
+</html>

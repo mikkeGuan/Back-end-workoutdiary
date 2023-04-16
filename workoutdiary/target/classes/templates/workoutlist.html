@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="styles.css">
+
+<title>My workoutlist</title>
+<meta http-equiv="Content-Type" contect="text/html" charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"  href="" th:href="@{/css/styles.css}" /> 
+
+</head>
+<body class="bg">
+
+
+	<h1 style="color: LightGoldenRodYellow;">Workoutlist</h1>
+	<div class="col-md-4" style="padding: 20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+		</form>
+	</div>
+	<center>
+	<table>
+	
+		<tr style="color: White; ">
+			<th>Exercise</th>
+			<th>Weight (Kg)</th>
+			<th>Repetition</th>
+			<th>Sets</th>
+			<th>Location</th>
+		</tr>
+		<tbody>
+			<tr style="color: White;  " th:each="workout : ${workouts}">
+				<td th:text="${workout.exercise}"></td>
+				<td th:text="${workout.weight}"></td>
+				<td th:text="${workout.repetition}"></td>
+				<td th:text="${workout.sets}"></td>
+				<td th:text="${workout.location.name}">Location</td>
+				
+				<td sec:authorize="hasAuthority('admin')"><a
+					th:href="@{/delete/{id}(id=${workout.id})}"
+					class="btn btn-sm btn-danger" >Delete</a></td>
+				<td><a th:href="@{/edit/{id}(id=${workout.id})}"class="btn btn-sm btn-danger" >Edit</a></td>
+
+
+			</tr>
+		</tbody>
+	</table>
+	</center>
+	<a href="/add">Add workout</a>
+	<br>
+	<br>
+</body>
+</html>

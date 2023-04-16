@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Edit workout</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"  href="" th:href="@{/css/styles.css}" /> 
+</head>
+<body class="bg">
+	<h1 style="color: LightGoldenRodYellow; ">Edit workout</h1>
+	<div>
+		<form style="color:White ; " th:object="${workout}" th:action="@{../save}" action="#" method="post">
+			<input type="hidden"  th:field="*{id}" /> 
+			<label for="exercise">Exercise</label>
+			<input type="text" id="exercise" th:field="*{exercise}" />
+			<label for="weight">Weight(Kg)</label>
+			<input type="text" id="weight"	th:field="*{weight}" /> 
+			<label for="repetition">Repetition</label> 
+			<input type="text" id="repetition" th:field="*{repetition}" />
+			 <label for="sets">Sets</label> 
+			 <input type="text" id="sets" th:field="*{sets}" /> 
+			  <label for="location">Location</label> 
+			 <select id ="Location" th:field="*{Location}" class="form-control">
+			 <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}" th:selected="${location.id == workout.location.id}"></option>
+			 
+			 
+				
+				<input type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>
